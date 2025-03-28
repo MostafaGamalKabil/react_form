@@ -2,14 +2,18 @@
 import './App.css'
 
 function App() {
+let person = "mostafa";
 
-
+const ChangeName = () => {
+ person = "ElRAYK";
+ console.log("ElRAYK");
+}
   return (
     <>
       
-    
-        <button >
-          count is 0
+    <h1>My name is : {person} </h1>
+        <button onClick={ChangeName} >
+          Change name
         </button>
       
 
