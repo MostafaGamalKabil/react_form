@@ -1,0 +1,22 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.App.dark {
+  background-color: #242424;
+  color: #fff;
+}
+
+.App.pink {
+  background-color: #81224f;
+  color: #fff;
+}
+.App.grey {
+  background-color: #203f4f;
+  color: #fff;
+}
