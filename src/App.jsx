@@ -1,51 +1,120 @@
-import './App.css'
-import './theme.css'
-import { useState } from 'react';
+import "./App.css";
+import "./theme.css";
+import { useState } from "react";
 function App() {
-
-  const [person , ChangeName] = useState("Mostafa gamal")
-  const [age , ChangeAge] = useState(28)
-  const [increment , setIncrement] = useState(0)
-  const [theme , settheme] = useState("")
+  const [person, ChangeName] = useState("Mostafa gamal");
+  const [age, ChangeAge] = useState(28);
+  const [increment, setIncrement] = useState(0);
+  const [theme, settheme] = useState("");
 
   return (
     <>
+      <div className={`App ${theme}`}>
+        <button
+          onClick={() => {
+            settheme(theme == "" ? "dark" : "");
+          }}
+          style={{ marginBottom: "44px" , marginTop: "100px" }}
+        >
+          Toggle Theme
+        </button>
 
-<div className={`App ${theme}`}>
-<div>
-        <button onClick={() => {settheme("light")}} style={{marginRight: "26px"}}>Light</button>
-        <button onClick={() => {settheme("dark")}} style={{marginRight: "26px"}}>Dark</button>
-        <button onClick={() => {settheme("grey")}} style={{marginRight: "26px"}}>Grey</button>
-        <button onClick={() => {settheme("pink")}} style={{marginRight: "26px"}}>Pink</button>
-</div>
+
+        <>
+
+  <div onChange={() => {settheme(theme == "" ? "dark" : "")}} style={{marginBottom : "50px"}} className="btn-container">
+    <i className="fa fa-sun-o" aria-hidden="true" />
+    <label className="switch btn-color-mode-switch">
+      <input
+        type="checkbox"
+        name="color_mode"
+        id="color_mode"
+        defaultValue={1}
+      />
+      <label
+        htmlFor="color_mode"
+        data-on="Dark"
+        data-off="Light"
+        className="btn-color-mode-switch-inner"
+      />
+    </label>
+    <i className="fa fa-moon-o" aria-hidden="true" />
+
+  </div>
+</>
 
 
 
-      
-    <h1  style={{marginTop: "66px"}}>My name is : {person} </h1>
-        <button onClick={() => {ChangeName("ELRAYEK")}} >
+
+        <div>
+          <button
+            onClick={() => {
+              settheme("light");
+            }}
+            style={{ marginRight: "26px" }}
+          >
+            Light
+          </button>
+          <button
+            onClick={() => {
+              settheme("dark");
+            }}
+            style={{ marginRight: "26px" }}
+          >
+            Dark
+          </button>
+          <button
+            onClick={() => {
+              settheme("grey");
+            }}
+            style={{ marginRight: "26px" }}
+          >
+            Grey
+          </button>
+          <button
+            onClick={() => {
+              settheme("pink");
+            }}
+            style={{ marginRight: "26px" }}
+          >
+            Pink
+          </button>
+        </div>
+
+        <h1 style={{ marginTop: "66px" }}>My name is : {person} </h1>
+        <button
+          onClick={() => {
+            ChangeName("ELRAYEK");
+          }}
+        >
           Change name
         </button>
-      <br />
-      <br />
-      <br />
-          
-    <h1>My name is : {age} </h1>
-        <button onClick={() => {ChangeAge(20)}} >
+        <br />
+        <br />
+        <br />
+
+        <h1>My name is : {age} </h1>
+        <button
+          onClick={() => {
+            ChangeAge(20);
+          }}
+        >
           Change name
         </button>
-      <br />
-      <br />
-      <br />
-          
+        <br />
+        <br />
+        <br />
 
-        <button onClick={() => {setIncrement(increment+1)}} >
+        <button
+          onClick={() => {
+            setIncrement(increment + 1);
+          }}
+        >
           count {increment}
         </button>
-
-        </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
