@@ -59,9 +59,7 @@ label {
   position: relative;
   transition: all 0.3s ease;
   /*box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;*/
-  display: flex;
-  align-items: center;
-  padding: 3px 5px;
+  display: block;
 }
 
 .btn-color-mode-switch > label.btn-color-mode-switch-inner:before{
@@ -69,9 +67,11 @@ label {
   position: absolute;
   font-size: 12px;
   font-weight: 500;
+  top: 7px;
   right: 20px;
-
-
+  display: flex;
+  align-items: center;
+  justify-content: center ;
 }
 
 .btn-color-mode-switch > label.btn-color-mode-switch-inner:after{
@@ -82,7 +82,7 @@ label {
   border-radius: 26px;
   position: absolute;
   left: 2px;
-
+  top: 2px;
   text-align: center;
   transition: all 0.3s ease;
   box-shadow: 0px 0px 6px -2px #111;

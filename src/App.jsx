@@ -1,28 +1,47 @@
 import "./App.css";
 import "./theme.css";
-import { useState } from "react";
-function App() {
-  const [person, ChangeName] = useState("Mostafa gamal");
-  const [age, ChangeAge] = useState(28);
-  const [increment, setIncrement] = useState(0);
-  const [theme, settheme] = useState("");
+import { useReducer } from "react";
 
+const intialData = {name : "mostafa" , age : 20 , count : 0 , theme : "light"}
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "CHANGE_NAME":
+      return { ...state, name: action.newValue };
+
+    case "CHANGE_AGE":
+      return { ...state, age: action.newAGE };
+
+    case "CHANGE_COUNT":
+      return { ...state, count: action.newCount };
+    case "CHANGE_THEME":
+      return { ...state, theme: action.newTHEME };
+
+    default:
+      return state;
+  }
+};
+
+
+function App() {
+  const [allData, dispatch] = useReducer(reducer, intialData);
   return (
     <>
-      <div className={`App ${theme}`}>
-        <button
-          onClick={() => {
-            settheme(theme == "" ? "dark" : "");
-          }}
-          style={{ marginBottom: "44px" , marginTop: "100px" }}
-        >
-          Toggle Theme
-        </button>
+      <div className={`App ${allData.theme}`}>
+    
+          <button onClick={() => {
+    dispatch({ type: "CHANGE_THEME", newTHEME: allData.theme == "light" ? "dark" : "light"});
 
+        }} style={{ marginBottom: "44px" , marginTop: "100px" }}>
+            Toggle Theme
+          </button>
 
-        <>
+      <>
 
-  <div onChange={() => {settheme(theme == "" ? "dark" : "")}} style={{marginBottom : "50px"}} className="btn-container">
+  <div onChange={() => {
+    dispatch({ type: "CHANGE_THEME", newTHEME: allData.theme == "light" ? "dark" : "light"});
+
+        }} style={{marginBottom : "50px"}} className="btn-container">
     <i className="fa fa-sun-o" aria-hidden="true" />
     <label className="switch btn-color-mode-switch">
       <input
@@ -47,70 +66,56 @@ function App() {
 
 
         <div>
-          <button
-            onClick={() => {
-              settheme("light");
-            }}
-            style={{ marginRight: "26px" }}
-          >
+          <button onClick={() => {
+                dispatch({ type: "CHANGE_THEME", newTHEME: "light"});
+
+          }} style={{ marginRight: "26px" }}>
             Light
           </button>
-          <button
-            onClick={() => {
-              settheme("dark");
-            }}
-            style={{ marginRight: "26px" }}
-          >
+          <button onClick={() => {
+                dispatch({ type: "CHANGE_THEME", newTHEME: "dark"});
+
+          }} style={{ marginRight: "26px" }}>
             Dark
           </button>
-          <button
-            onClick={() => {
-              settheme("grey");
-            }}
-            style={{ marginRight: "26px" }}
-          >
+          <button onClick={() => {
+                dispatch({ type: "CHANGE_THEME", newTHEME: "grey"});
+
+          }} style={{ marginRight: "26px" }}>
             Grey
           </button>
-          <button
-            onClick={() => {
-              settheme("pink");
-            }}
-            style={{ marginRight: "26px" }}
-          >
+          <button onClick={() => {
+                dispatch({ type: "CHANGE_THEME", newTHEME: "pink"});
+
+          }} style={{ marginRight: "26px" }}>
             Pink
           </button>
         </div>
 
-        <h1 style={{ marginTop: "66px" }}>My name is : {person} </h1>
-        <button
-          onClick={() => {
-            ChangeName("ELRAYEK");
-          }}
-        >
+        <h1 style={{ marginTop: "66px" }}>My name is : {allData.name} </h1>
+        <button onClick={() => {
+          dispatch({ type: "CHANGE_NAME", newValue: "ELRAYEK👌" });
+        }}>
           Change name
         </button>
         <br />
         <br />
         <br />
 
-        <h1>My name is : {age} </h1>
-        <button
-          onClick={() => {
-            ChangeAge(20);
-          }}
-        >
-          Change name
+        <h1>My Age is : {allData.age} </h1>
+        <button onClick={() => {
+          dispatch({ type: "CHANGE_AGE", newAGE: 21 });
+        }}>
+          Change Age 
         </button>
         <br />
         <br />
         <br />
 
-        <button
-          onClick={() => {
-            setIncrement(increment + 1);
-          }}
-        >
-          count {increment}
+        <button onClick={() => {
+        dispatch({ type: "CHANGE_COUNT", newCount: allData.count +1 });
+        }}>
+          count {allData.count}
         </button>
       </div>
     </>
