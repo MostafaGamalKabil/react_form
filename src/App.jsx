@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import "./App.css";
 import "./theme.css";
-import { useReducer } from "react";
+// import { useReducer } from "react";
 import { useContext } from "react";
 import Datacontext from "./context/Datacontext";
 
-const intialData = { name: "mostafa", age: 20, count: 0, theme: "light" };
+// const intialData = { name: "mostafa", age: 20, count: 0, theme: "light" };
 
 // const reducer = (state, action) => {
 //   switch (action.type) {
@@ -26,36 +26,24 @@ const intialData = { name: "mostafa", age: 20, count: 0, theme: "light" };
 // };
 
 function App() {
-  const { name , changeName} = useContext(Datacontext);
+  const { name , theme ,  changeName , changeTheme} = useContext(Datacontext);
   // const [allData, dispatch] = useReducer(reducer, intialData);
   return (
     <>
-      <div className={`App`}>
-        {/* <button
-          onClick={() => {
-            dispatch({
-              type: "CHANGE_THEME",
-              newTHEME: allData.theme == "light" ? "dark" : "light",
-            });
-          }}
-          style={{ marginBottom: "44px", marginTop: "100px" }}
-        >
+      <div className={`App ${theme}`}>
+
+         <button onClick={() => {
+          changeTheme("dark")
+         }} style={{ marginBottom: "44px", marginTop: "100px" }}>
           Toggle Theme
-        </button> */}
+        </button> 
 
         <>
           <Link to="/page2">Go to page2</Link>
 
-          {/* <div
-            onChange={() => {
-              dispatch({
-                type: "CHANGE_THEME",
-                newTHEME: allData.theme == "dark" ? "light" : "dark",
-              });
-            }}
-            style={{ marginBottom: "50px" }}
-            className="btn-container"
-          >
+         <div onChange={() => {
+           changeTheme(theme == "light" ? "dark" : "light" ) 
+         }} style={{ marginBottom: "50px" }} className="btn-container">
             <i className="fa fa-sun-o" aria-hidden="true" />
             <label className="switch btn-color-mode-switch">
               <input
@@ -72,7 +60,7 @@ function App() {
               />
             </label>
             <i className="fa fa-moon-o" aria-hidden="true" />
-          </div> */}
+          </div> 
         </>
 
         {/* <div>
@@ -112,7 +100,7 @@ function App() {
 
         <h1 style={{ marginTop: "66px" }}>My name is : {name} </h1>
         <button onClick={() => {
-          changeName();
+          changeName("ELRAYEK👌");
         }}>
           Change name
         </button>

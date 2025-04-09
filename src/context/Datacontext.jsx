@@ -23,13 +23,15 @@ const reducer = (state, action) => {
 export function DataProvider({ children }) {
   const [firstState, dispatch] = useReducer(reducer, initialData);
 
-  const changeName = () => {
-    dispatch({type : "CHANGE_NAME" , newValue : "ELRAYEK👌"})
+  const changeName = (newName) => {
+    dispatch({type : "CHANGE_NAME" , newValue :  newName})
+  }
+  const changeTheme = (darkTheme) => {
+    dispatch({type : "CHANGE_THEME" , newTHEME : darkTheme})
   }
 
-
   return (
-    <ThemeContexttt.Provider value={{ ...firstState  , changeName}}>
+    <ThemeContexttt.Provider value={{ ...firstState  , changeName , changeTheme}}>
       {children}
     </ThemeContexttt.Provider>
   );
