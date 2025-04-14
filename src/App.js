@@ -11,7 +11,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-    errorElement: <h1>SORROY.........</h1>,
+    errorElement: <h1 style={{textAlign:'center' , color:'red'}}>SORROY! Page Not Found.........</h1>,
   },
 
   {
