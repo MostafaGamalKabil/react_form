@@ -14,12 +14,39 @@ const Header = () => {
         <h1>
           <Link to="/">Web Devs</Link>
         </h1>
-        <button onClick={() => {
-          ToggleTheme(theme === "Light" ? "Dark" : "Light")
-        }} className="theme-btn" >{theme}</button>
+      
        
+        <i onClick={() => {
+          ToggleTheme(theme === "Light" ? "Dark" : "Light")
+        }} className="fa-solid fa-sun"></i>
+
+        <i onClick={() => {
+          ToggleTheme(theme === "Light" ? "Dark" : "Light")
+        }} className="fa-solid fa-moon"></i>
+
+
+        
+
         <ul className="flex">
+        
           <li className="main-list">
+
+
+
+          <NavLink className="main-link" to="/signin">
+          Sign-in
+        </NavLink>
+
+
+          <NavLink className="main-link" to="/signup">
+          Sign-up
+        </NavLink>
+    
+
+
+
+
+
             <NavLink className="main-link" to="/html">
               HTML
             </NavLink>

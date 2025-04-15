@@ -42,3 +42,23 @@
   background-color: #000000 !important;
   color: #fff;
 }
+
+.fa-sun {
+  color: orange;
+}
+.fa-solid {
+  font-size: 20px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.fa-solid:hover {
+  font-size: 22px;
+}
+
+.Light .fa-sun {
+  display: none;
+}
+.Dark .fa-moon {
+  display: none;
+}
+

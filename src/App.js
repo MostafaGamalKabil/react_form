@@ -6,6 +6,8 @@ import Css from "./pages/css";
 import Javascript from "./pages/javascript";
 import { useContext } from "react";
 import ThemeContext from "./context/ThemeContext";
+import Signup from './pages/Sign-up';
+import Signin from './pages/Sign-in';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,16 @@ const router = createBrowserRouter([
     path: "/html",
     element: <HTML />,
   },
+
+  {
+      path: "/signin",
+    element: <Signin />,
+  },
+  {
+      path: "/signup",
+    element: <Signup />,
+  },
+
 
   {
     path: "/css",

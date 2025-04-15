@@ -1,8 +1,7 @@
-import { type } from "@testing-library/user-event/dist/type";
 import { createContext, useReducer } from "react";
 const ThemeContexttt = createContext();
 
-const initialData = { theme: localStorage.getItem("myTheme") === null ? "Light" :  "Dark"};
+const initialData = { theme: localStorage.getItem("myTheme") === null ? "Light" : localStorage.getItem("myTheme") };
 const reducer = (firstState , action) => {
   switch (action.type) {
     case "ToggleTheme":
