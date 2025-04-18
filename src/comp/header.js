@@ -1,51 +1,68 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Header.css";
-import  '../theme.css';
+import "../theme.css";
 // Level2
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
+import {signOut } from "firebase/auth";
 
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/config";
 const Header = () => {
-  const {ToggleTheme , theme} = useContext(ThemeContext)
+  const [user, loading, error] = useAuthState(auth);
+
+  const { ToggleTheme, theme } = useContext(ThemeContext);
   return (
     <div className="myheader">
       <header className="hide-when-mobile ali">
         <h1>
           <Link to="/">Web Devs</Link>
         </h1>
-      
-       
-        <i onClick={() => {
-          ToggleTheme(theme === "Light" ? "Dark" : "Light")
-        }} className="fa-solid fa-sun"></i>
 
-        <i onClick={() => {
-          ToggleTheme(theme === "Light" ? "Dark" : "Light")
-        }} className="fa-solid fa-moon"></i>
+        <i
+          onClick={() => {
+            ToggleTheme(theme === "Light" ? "Dark" : "Light");
+          }}
+          className="fa-solid fa-sun"
+        ></i>
 
-
-        
+        <i
+          onClick={() => {
+            ToggleTheme(theme === "Light" ? "Dark" : "Light");
+          }}
+          className="fa-solid fa-moon"
+        ></i>
 
         <ul className="flex">
-        
           <li className="main-list">
+          {!user && (
+            <i className="main-list">
+              <NavLink className="main-link" to="/signin">
+              Sign-in
+              </NavLink>
+            </i>
+          )}
 
+            {!user && (
+              <i className="main-list">
+                <NavLink className="main-link" to="/signup">
+                Sign-up
+                </NavLink>
+              </i>
+            )}
 
-
-          <NavLink className="main-link" to="/signin">
-          Sign-in
-        </NavLink>
-
-
-          <NavLink className="main-link" to="/signup">
-          Sign-up
-        </NavLink>
-    
-
-
-
-
+            {user && (
+              <i onClick={(eo) => {
+                signOut(auth).then(() => {
+                  // Sign-out successful.
+                }).catch((error) => {
+                  // An error happened.
+                });
+              }} className="main-list">
+                <NavLink className="main-link">Sign-out</NavLink>
+              </i>
+            )}
 
             <NavLink className="main-link" to="/html">
               HTML
