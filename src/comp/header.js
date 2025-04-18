@@ -64,9 +64,9 @@ const Header = () => {
               </i>
             )}
 
-            <NavLink className="main-link" to="/html">
+            {user && <NavLink className="main-link" to="/html">
               HTML
-            </NavLink>
+            </NavLink>}
             <ul className="sub-ul">
               <li>
                 <a href="">Full Course</a>
@@ -80,9 +80,9 @@ const Header = () => {
             </ul>
           </li>
           <li className="main-list">
-            <NavLink className="main-link" to="/css">
-              CSS
-            </NavLink>
+          {user &&   <NavLink className="main-link" to="/css">
+            CSS
+          </NavLink>}
             <ul className="sub-ul">
               <li>
                 <a href="">Full Course</a>
@@ -107,9 +107,9 @@ const Header = () => {
             </ul>
           </li>
           <li className="main-list">
-            <NavLink className="main-link" to="/javascript">
+            {user && <NavLink className="main-link" to="/javascript">
               JavaScript
-            </NavLink>
+            </NavLink>}
             <ul className="sub-ul sub-of-js">
               <li>
                 <a href="">coming soon🔥</a>
