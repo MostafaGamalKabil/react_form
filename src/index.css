@@ -94,3 +94,8 @@ form .account {
 .Light p {
   color: #000;
 }
+
+form .ErrorMessage {
+  color: red;
+  font-size: 20px;
+}
