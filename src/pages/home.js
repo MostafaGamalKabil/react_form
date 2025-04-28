@@ -2,10 +2,13 @@ import Header from "../comp/header";
 import Footer from "../comp/Footer";
 import MainContent from "../comp/MainContent";
 import { Helmet } from "react-helmet-async";
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from '../firebase/config';
+import { use } from "react";
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-
+const [user , loading , error] = useAuthState(auth)
   return (
     <>
       <Helmet>
@@ -16,8 +19,8 @@ const Home = () => {
 
         <Header />
       
-        <MainContent pageName="HOME Page" />
-      
+{user && <MainContent pageName="Home Page"/>}      
+{!user && <main><p className="pls">Please <Link style={{fontSize:"30px"}} to="/signin">sign in </Link>to continue... <span>❤️</span></p></main> }      
         <Footer />
   
     </>

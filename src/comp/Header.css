@@ -29,6 +29,10 @@
   }
 }
 
+.signout {
+  all: unset;
+  padding: 8px 15px;
+}
 
 
 

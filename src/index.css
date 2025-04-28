@@ -80,7 +80,7 @@ form .account {
   font-size: 18px;
 }
 
-.account a {
+.account a , .pls a{
   font-size: 20px;
   font-weight: bold;
   color: teal;
@@ -99,3 +99,5 @@ form .ErrorMessage {
   color: red;
   font-size: 20px;
 }
+
+

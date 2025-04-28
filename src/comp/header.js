@@ -42,6 +42,8 @@ const Header = () => {
               Sign-in
               </NavLink>
             </i>
+
+            
           )}
 
             {!user && (
@@ -60,7 +62,7 @@ const Header = () => {
                   // An error happened.
                 });
               }} className="main-list">
-                <NavLink className="main-link">Sign-out</NavLink>
+                <button className="main-link signout">Sign-out</button>
               </i>
             )}
 
