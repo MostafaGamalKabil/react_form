@@ -8,6 +8,7 @@ import { auth } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Moment from "react-moment";
 import { use } from "react";
+import { deleteUser } from "firebase/auth";
 const Profile = () => {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
@@ -18,8 +19,7 @@ const Profile = () => {
 
     if (user) {
       if (!user.emailVerified) {
-        navigate("/")
-  
+        navigate("/");
       }
     }
   });
@@ -75,18 +75,31 @@ const Profile = () => {
         <Header />
 
         <main>
-         <div>
-           <h6> {user.displayName} </h6>
-           <h6>{user.email} </h6>
-           <h6>
-             Last Sign in :{" "}
-             <Moment fromNow date={user.metadata.lastSignInTime} />{" "}
-           </h6>
-           <h6>
-             CreatedAt : <Moment fromNow date={user.metadata.creationTime} />{" "}
-           </h6>
-           <button className="delete">Delete account</button>
-         </div>
+          <div>
+            <h6> {user.displayName} </h6>
+            <h6>{user.email} </h6>
+            <h6>
+              Last Sign in :{" "}
+              <Moment fromNow date={user.metadata.lastSignInTime} />{" "}
+            </h6>
+            <h6>
+              CreatedAt : <Moment fromNow date={user.metadata.creationTime} />{" "}
+            </h6>
+            <button
+              onClick={() => {
+                deleteUser(user)
+                  .then(() => {
+                  })
+                  .catch((error) => {
+                    // An error ocurred
+                    // ...
+                  });
+              }}
+              className="delete"
+            >
+              Delete account
+            </button>
+          </div>
         </main>
         <Footer />
       </>
