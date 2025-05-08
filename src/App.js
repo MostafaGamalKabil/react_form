@@ -1,9 +1,8 @@
 // Level2
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home";
-import HTML from "./pages/html";
-import Css from "./pages/css";
-import Javascript from "./pages/javascript";
+import About from "./pages/About";
+import Profile from "./pages/Profile";
 import { useContext } from "react";
 import ThemeContext from "./context/ThemeContext";
 import Signup from './pages/Sign-up';
@@ -17,8 +16,8 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/html",
-    element: <HTML />,
+    path: "/about",
+    element: <About />,
   },
 
   {
@@ -31,13 +30,10 @@ const router = createBrowserRouter([
   },
 
 
+
   {
-    path: "/css",
-    element: <Css />,
-  },
-  {
-    path: "/javascript",
-    element: <Javascript />,
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 
