@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 import { use } from "react";
 import { Link } from "react-router-dom";
+import { sendEmailVerification } from "firebase/auth";
 
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -60,7 +61,17 @@ const Home = () => {
               Welcome {user.displayName} <span>🧡</span>
             </p>{" "}
             <p>We send you an email to verify your Account 🤚</p>
-            <button className="delete">Send again</button>
+            <button
+              onClick={() => {
+                sendEmailVerification(auth.currentUser).then(() => {
+                  //
+                  console.log("Email verification sent!");
+                });
+              }}
+              className="delete"
+            >
+              Send again
+            </button>
           </main>
           <Footer />
         </>

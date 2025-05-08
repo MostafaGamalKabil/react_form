@@ -8,9 +8,10 @@ import {
   updateProfile,
   sendEmailVerification,
 } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuthState } from "react-firebase-hooks/auth";
+
 const Signup = () => {
   let navigate = useNavigate();
   const [email, setemail] = useState("");
@@ -22,6 +23,15 @@ const Signup = () => {
   // Not Sign-in
   // Sign-in without email veryfied
   // Sign-in and email veryfied
+
+
+  useEffect(() => {
+    if (user) {
+      if (user.emailVerified) {
+        navigate("/")
+      }
+    }
+  })
 
   if (loading) {
     return (
