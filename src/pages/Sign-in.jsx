@@ -3,7 +3,10 @@ import Footer from "../comp/Footer";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 // sign-in importing
-import { signInWithEmailAndPassword , sendPasswordResetEmail} from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -19,11 +22,69 @@ const Signin = () => {
   const [firebaseError, setfirebaseError] = useState(false);
   const [showSendEmail, setshowSendEmail] = useState(false);
 
+  // this function start when click on signin btn
+  const signinBTN = (eo) => {
+    eo.preventDefault(); // يمنع الافتراضي بتاع الصفحه انه يتعملها ريفريش
+    signInWithEmailAndPassword(auth, email, password) // بياخد الاميل و الباسورد عشان يدور عليهم في الداتا بيز
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        navigate("/");
+        // ...
+      })
+
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        switch (errorCode) {
+          case "auth/invalid-email":
+            setfirebaseError("Invalid Email");
+
+            break;
+          case "auth/invalid-credential":
+            setfirebaseError("User Not Found");
+
+            break;
+          case "auth/invalid-password-hash":
+            setfirebaseError("Invalid Password");
+
+            break;
+          case "auth/too-many-requests":
+            setfirebaseError("Too many requstes , please try again later");
+
+            break;
+
+          default:
+            setfirebaseError("Please Check your email & password");
+            break;
+        }
+
+        sethasError(errorMessage);
+      });
+  };
+
+  // this function start when click on reset password btn
+  // and this function take email and send email to reset password
+  const resetPasswordBTN = (eo) => {
+    eo.preventDefault();
+
+    sendPasswordResetEmail(auth, resetPass)
+      .then(() => {
+        setshowSendEmail(true); // لما التغير يبقى ترو يظهر
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  };
+
   return (
     <>
       <Helmet>
-        <title>Sign Up Page</title>
-        <meta name="description" content="Sign Up" />
+        <title>Sign in Page</title>
+        <meta name="description" content="Sign in" />
       </Helmet>
       <Header />
       <main>
@@ -36,22 +97,16 @@ const Signin = () => {
           >
             <i className="fa-solid fa-xmark"></i>
           </div>
-          <input onChange={(eo) => {
-            setresetPass(eo.target.value)
-          }} type="email" placeholder="E-mail" />
+          <input
+            onChange={(eo) => {
+              setresetPass(eo.target.value);
+            }}
+            type="email"
+            placeholder="E-mail"
+          />
           <button
             onClick={(eo) => {
-              eo.preventDefault();
-
-              sendPasswordResetEmail(auth, resetPass)
-                .then(() => {
-                  setshowSendEmail(true); // لما التغير يبقى ترو يظهر
-                })
-                .catch((error) => {
-                  const errorCode = error.code;
-                  const errorMessage = error.message;
-                  // ..
-                });
+              resetPasswordBTN(eo);
             }}
           >
             Reset Password
@@ -85,46 +140,7 @@ const Signin = () => {
           />
           <button
             onClick={(eo) => {
-              eo.preventDefault();
-              signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                  // Signed in
-                  const user = userCredential.user;
-                  navigate("/");
-                  // ...
-                })
-
-                .catch((error) => {
-                  const errorCode = error.code;
-                  const errorMessage = error.message;
-
-                  switch (errorCode) {
-                    case "auth/invalid-email":
-                      setfirebaseError("Invalid Email");
-
-                      break;
-                    case "auth/invalid-credential":
-                      setfirebaseError("User Not Found");
-
-                      break;
-                    case "auth/invalid-password-hash":
-                      setfirebaseError("Invalid Password");
-
-                      break;
-                    case "auth/too-many-requests":
-                      setfirebaseError(
-                        "Too many requstes , please try again later"
-                      );
-
-                      break;
-
-                    default:
-                      setfirebaseError("Please Check your email & password");
-                      break;
-                  }
-
-                  sethasError(errorMessage);
-                });
+              signinBTN(eo);
             }}
           >
             Sign in

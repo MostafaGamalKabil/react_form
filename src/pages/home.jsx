@@ -11,6 +11,15 @@ import { sendEmailVerification } from "firebase/auth";
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
 
+  // this function start when click on send email button 
+  // and this function send email again to veryfied
+  const sendEmailAgain = () => {
+    sendEmailVerification(auth.currentUser).then(() => {
+      //
+      console.log("Email verification sent!");
+    });
+  };
+
   if (loading) {
     return <Loading />;
   }
@@ -55,14 +64,11 @@ const Home = () => {
             <p>We send you an email to verify your Account 🤚</p>
             <button
               onClick={() => {
-                sendEmailVerification(auth.currentUser).then(() => {
-                  //
-                  console.log("Email verification sent!");
-                });
+                sendEmailAgain();
               }}
               className="delete"
             >
-              Send again
+              Send Email
             </button>
           </main>
           <Footer />

@@ -25,6 +25,16 @@ const Profile = () => {
     }
   });
 
+  // this function start when click of Delete Account Btn
+  const deleteAccounBTN = (params) => {
+    deleteUser(user) //بيحذف المستخدم من قاعدة البيانات
+      .then(() => {})
+      .catch((error) => {
+        // An error ocurred
+        // ...
+      });
+  };
+
   if (loading) {
     return <Loading />;
   }
@@ -80,12 +90,7 @@ const Profile = () => {
             </h6>
             <button
               onClick={() => {
-                deleteUser(user)
-                  .then(() => {})
-                  .catch((error) => {
-                    // An error ocurred
-                    // ...
-                  });
+                deleteAccounBTN();
               }}
               className="delete"
             >

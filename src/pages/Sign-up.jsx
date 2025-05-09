@@ -34,6 +34,39 @@ const Signup = () => {
     }
   });
 
+  // this function start when click on btn of form
+  const singupBTN = (eo) => {
+    eo.preventDefault(); // يمنع ان الصفحه تتعمل ريفرش
+    createUserWithEmailAndPassword(auth, email, password) // اول ما اضغط على الزرار هينشئ مستخدم في قاعدة البيانات
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+
+        sendEmailVerification(auth.currentUser).then(() => {
+          // Email verification sent!
+          // ...
+        });
+
+        updateProfile(auth.currentUser, {
+          displayName: userName,
+        })
+          .then(() => {
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error.code);
+            // ...
+          });
+
+        // ...
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  };
+
   if (loading) {
     return <Loading />;
   }
@@ -93,41 +126,9 @@ const Signup = () => {
               placeholder="Password: "
               required
             />
-            <button
-              onClick={(eo) => {
-                eo.preventDefault();
-                createUserWithEmailAndPassword(auth, email, password)
-                  .then((userCredential) => {
-                    // Signed in
-                    const user = userCredential.user;
-
-                    sendEmailVerification(auth.currentUser).then(() => {
-                      // Email verification sent!
-                      // ...
-                    });
-
-                    updateProfile(auth.currentUser, {
-                      displayName: userName,
-                    })
-                      .then(() => {
-                        navigate("/");
-                      })
-                      .catch((error) => {
-                        console.log(error.code);
-                        // ...
-                      });
-
-                    // ...
-                    navigate("/");
-                  })
-                  .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                  });
-              }}
-            >
-              Sign up
-            </button>
+            <button onClick={(eo) => {
+              singupBTN(eo)
+              }}>Sign up</button>
             <p className="account">
               Already have an account <Link to="/signin">Sign in</Link>
             </p>

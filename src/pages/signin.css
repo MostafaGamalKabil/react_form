@@ -52,3 +52,7 @@
     font-size: 19px;
     font-weight: bold;
 }
+
+.Light .forgot-password {
+  background-color: #e2e2e2;
+}
