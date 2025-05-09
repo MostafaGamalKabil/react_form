@@ -1,6 +1,6 @@
 import Header from "../comp/header";
 import Footer from "../comp/Footer";
-import MainContent from "../comp/MainContent";
+import Loading from "../comp/loading";
 import { Helmet } from "react-helmet-async";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
@@ -12,15 +12,7 @@ const Home = () => {
   const [user, loading, error] = useAuthState(auth);
 
   if (loading) {
-    return (
-      <div>
-        <Header />
-        <main>
-          <h1>loading..........</h1>
-        </main>
-        <Footer />
-      </div>
-    );
+    return <Loading />;
   }
 
   if (user) {

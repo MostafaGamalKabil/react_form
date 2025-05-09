@@ -1,5 +1,7 @@
 import Header from "../comp/header";
 import Footer from "../comp/Footer";
+import Loading from "../comp/loading";
+
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase/config";
@@ -24,44 +26,32 @@ const Signup = () => {
   // Sign-in without email veryfied
   // Sign-in and email veryfied
 
-
   useEffect(() => {
     if (user) {
       if (user.emailVerified) {
-        navigate("/")
+        navigate("/");
       }
     }
-  })
+  });
 
   if (loading) {
-    return (
-      <div>
-        <Header />
-        <main>
-          <h1>loading..........</h1>
-        </main>
-        <Footer />
-      </div>
-    );
+    return <Loading />;
   }
 
-
- if (user) {
-  if (!user.emailVerified) {
-    return(
-     <div>
-     <Header />
-     <main>
-       <p>We send you an email to verify your Account</p>
-       <button className="delete">Send again</button>
-     </main>
-     <Footer />
-   </div>
-    );
-   }
- 
- }
-
+  if (user) {
+    if (!user.emailVerified) {
+      return (
+        <div>
+          <Header />
+          <main>
+            <p>We send you an email to verify your Account</p>
+            <button className="delete">Send again</button>
+          </main>
+          <Footer />
+        </div>
+      );
+    }
+  }
 
   if (!user) {
     return (

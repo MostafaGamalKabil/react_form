@@ -1,6 +1,7 @@
 import Header from "../comp/header";
 import Footer from "../comp/Footer";
-import MainContent from "../comp/MainContent";
+import Loading from "../comp/loading";
+
 import { Helmet } from "react-helmet-async";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -25,15 +26,7 @@ const Profile = () => {
   });
 
   if (loading) {
-    return (
-      <div>
-        <Header />
-        <main>
-          <h1>loading..........</h1>
-        </main>
-        <Footer />
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error) {
@@ -88,8 +81,7 @@ const Profile = () => {
             <button
               onClick={() => {
                 deleteUser(user)
-                  .then(() => {
-                  })
+                  .then(() => {})
                   .catch((error) => {
                     // An error ocurred
                     // ...
