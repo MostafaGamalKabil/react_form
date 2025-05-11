@@ -1,10 +1,11 @@
 import Header from "../comp/header";
 import Footer from "../comp/Footer";
 import Loading from "../comp/loading";
+import ErorrPage404 from "../pages/ErorrPage404";
 import { Helmet } from "react-helmet-async";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
-import { use } from "react";
+
 import { Link } from "react-router-dom";
 import { sendEmailVerification } from "firebase/auth";
 
@@ -22,6 +23,9 @@ const Home = () => {
 
   if (loading) {
     return <Loading />;
+  }
+  if (error) {
+    return <ErorrPage404 />;
   }
 
   if (user) {

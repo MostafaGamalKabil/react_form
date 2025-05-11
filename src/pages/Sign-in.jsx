@@ -28,7 +28,7 @@ const Signin = () => {
     signInWithEmailAndPassword(auth, email, password) // بياخد الاميل و الباسورد عشان يدور عليهم في الداتا بيز
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
+      
         navigate("/");
         // ...
       })
@@ -74,8 +74,7 @@ const Signin = () => {
         setshowSendEmail(true); // لما التغير يبقى ترو يظهر
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+     
         // ..
       });
   };

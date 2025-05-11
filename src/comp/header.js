@@ -10,11 +10,13 @@ import {signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 const Header = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const { ToggleTheme, theme } = useContext(ThemeContext);
   return (
     <div className="myheader">
+
+
       <header className="hide-when-mobile ali">
         <h1>
           <Link to="/">Web Devs</Link>
@@ -69,17 +71,7 @@ const Header = () => {
             {user && <NavLink className="main-link" to="/about">
              About
             </NavLink>}
-            <ul className="sub-ul">
-              <li>
-                <a href="">Full Course</a>
-              </li>
-              <li>
-                <a href="">Crash Course</a>
-              </li>
-              <li>
-                <a href="">learn in 1h</a>
-              </li>
-            </ul>
+    
           </li>
          
           <li className="main-list">
@@ -91,34 +83,7 @@ const Header = () => {
         </ul>
       </header>
 
-      <header className="show-when-mobile ali">
-        <h1>c4a.dev</h1>
-        <label className="absolute" htmlFor="burger">
-          <i className="fas fa-bars" />
-        </label>
-        <input id="burger" type="checkbox" />
-        <div className="show-on-click">
-          <div className="main-div">
-            <label htmlFor="html">
-              HTML <i className="fas fa-plus" />
-            </label>
-            <input id="html" type="checkbox" />
-           
-          </div>
-         
-          <div className="main-div">
-            <label htmlFor="js">
-              JavaScript <i className="fas fa-plus" />
-            </label>
-            <input id="js" type="checkbox" />
-            <ul className="sub-div">
-              <li>
-                <NavLink to="/javascript">coming soon🔥</NavLink>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
+    
     </div>
   );
 };

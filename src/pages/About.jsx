@@ -1,13 +1,14 @@
 import Header from "../comp/header";
 import Footer from "../comp/Footer";
 import Loading from "../comp/loading";
+import ErorrPage404 from "../pages/ErorrPage404";
 import MainContent from "../comp/MainContent";
 import { Helmet } from "react-helmet-async";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { use } from "react";
+
 
 const About = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -27,6 +28,9 @@ const About = () => {
 
   if (loading) {
     <Loading />;
+  }
+  if (error) {
+    <ErorrPage404 />;
   }
 
   if (user) {

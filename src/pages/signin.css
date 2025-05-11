@@ -12,6 +12,8 @@
   transform: translateY(-100vh);
 }
 
+
+
 .show-forgot-password{
     scale: 1;
       transform: translateY(0);
@@ -56,3 +58,24 @@
 .Light .forgot-password {
   background-color: #e2e2e2;
 }
+
+/* responsive design */
+@media (max-width:450px) {
+  .forgot-password {
+    height: 300px;
+  width:333px;
+  }
+
+  .forgot-password button {
+    font-size:14px ;
+  }
+}
+
+@media (max-width:350px) {
+    .forgot-password {
+    height: 250px;
+  width:310px;
+  }
+
+}
+

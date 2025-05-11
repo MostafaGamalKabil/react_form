@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
+import ErorrPage404 from './pages/ErorrPage404';
 import { useContext } from "react";
 import ThemeContext from "./context/ThemeContext";
 import Signup from './pages/Sign-up';
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-    errorElement: <h1 style={{textAlign:'center' , color:'red'}}>SORROY! Page Not Found.........</h1>,
+    errorElement: <ErorrPage404/>,
   },
 
   {

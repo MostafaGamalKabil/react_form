@@ -1,6 +1,7 @@
 import Header from "../comp/header";
 import Footer from "../comp/Footer";
 import Loading from "../comp/loading";
+import ErorrPage404 from "../pages/ErorrPage404";
 
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -40,7 +41,7 @@ const Signup = () => {
     createUserWithEmailAndPassword(auth, email, password) // اول ما اضغط على الزرار هينشئ مستخدم في قاعدة البيانات
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
+    
 
         sendEmailVerification(auth.currentUser).then(() => {
           // Email verification sent!
@@ -62,13 +63,15 @@ const Signup = () => {
         navigate("/");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+     
       });
   };
 
   if (loading) {
     return <Loading />;
+  }
+  if (error) {
+    return <ErorrPage404 />;
   }
 
   if (user) {
